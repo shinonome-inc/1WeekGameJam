@@ -18,4 +18,25 @@ public class ProvisionalSanta : MonoBehaviour
             MoveObjectToMousePosition();
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        string goodChildTag = "GoodChild";
+        string badChildTag = "BadChild";
+        // サンタが「わるいこ」と衝突した場合
+        if (other.gameObject.CompareTag(badChildTag))
+        {
+            Debug.Log("Santa met " + badChildTag + ".");
+            // TODO: ゲームオーバーの処理を追加する。
+        }
+        // サンタが「よいこ」と衝突した場合
+        else if (other.gameObject.CompareTag(goodChildTag))
+        {
+            Debug.Log("Santa met " + goodChildTag + ".");
+            GameObject goodChild = GameObject.FindGameObjectWithTag(goodChildTag);
+            GameObject badChild = GameObject.FindGameObjectWithTag(badChildTag);
+            Destroy(goodChild);
+            Destroy(badChild);
+        }
+    }
 }
