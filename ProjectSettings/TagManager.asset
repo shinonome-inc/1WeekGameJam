@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - route1
+  - route5
+  - route3
+  - route6
+  - route4
+  - deathzone
   layers:
   - Default
   - TransparentFX

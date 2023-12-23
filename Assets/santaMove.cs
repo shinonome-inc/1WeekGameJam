@@ -21,15 +21,15 @@ public class santaMove : MonoBehaviour
     GameObject route5_5;
     GameObject route6;
     GameObject route6_1;
-     GameObject death;
+    GameObject death;
     float SantaWidth;
     float Route5Width;
     string RouteString = "0";
-        public float radius = 2f;  // 円弧の半径
+    public float radius = 2f;  // 円弧の半径
     public float angularSpeed = 1f;  // 角速度（1秒あたりの回転角度）
 
     private float elapsedTime = 0f;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,90 +48,307 @@ public class santaMove : MonoBehaviour
         this.route5_5 = GameObject.Find("route-5 (5)");
         this.route6 = GameObject.Find("route-6");
         this.route6_1 = GameObject.Find("route-6 (1)");
-        this.death = GameObject.Find("奈落");
+        this.death = GameObject.Find("DeathZone");
         SantaWidth = this.santa.GetComponent<RectTransform>().sizeDelta.x;
         Route5Width = this.route5.GetComponent<RectTransform>().sizeDelta.x;
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Vector3 santaPosition = transform.position;
+        Vector3 obstaclePosition = collision.transform.position;
+        Vector3 relativePosition = obstaclePosition - santaPosition;
+        if (collision.CompareTag("route5"))
+        {
+            // 相対位置に基づいて方向を判定
+            if (Mathf.Abs(relativePosition.x) > Mathf.Abs(relativePosition.y))
+            {
+                // 左右の判定
+                if (relativePosition.x > 0)
+                {
+                    Debug.Log("左側に接触");
+                    // 右側に接触した場合の処理
+                    RouteString = "5-2";
+                }
+                else if (relativePosition.x < 0)
+                {
+                    Debug.Log("右側に接触");
+                    // 左側に接触した場合の処理
+                    RouteString = "5-0";
+                }
+            }
+            else
+            {
+                // 上下の判定
+                if (relativePosition.y > 0)
+                {
+                    Debug.Log("下側に接触");
+                    // 上側に接触した場合の処理
+                    RouteString = "5-3";
+                }
+                else if (relativePosition.y < 0)
+                {
+                    Debug.Log("上側に接触");
+                    // 下側に接触した場合の処理
+                    RouteString = "5-1";
+                }
+            }
+        }
+        else if (collision.CompareTag("deathzone"))
+        {
+            // 相対位置に基づいて方向を判定
+            if (Mathf.Abs(relativePosition.x) > Mathf.Abs(relativePosition.y))
+            {
+                // 左右の判定
+                if (relativePosition.x > 0)
+                {
+                    Debug.Log("左側に接触");
+                    // 右側に接触した場合の処理
+
+                }
+                else if (relativePosition.x < 0)
+                {
+                    Debug.Log("右側に接触");
+                    // 左側に接触した場合の処理
+                }
+            }
+            else
+            {
+                // 上下の判定
+                if (relativePosition.y > 0)
+                {
+                    Debug.Log("下側に接触");
+                    // 上側に接触した場合の処理
+
+                }
+                else if (relativePosition.y < 0)
+                {
+                    Debug.Log("上側に接触");
+                    // 下側に接触した場合の処理
+
+                }
+            }
+        }
+        else if (collision.CompareTag("route1"))
+        {
+            // 相対位置に基づいて方向を判定
+            if (Mathf.Abs(relativePosition.x) > Mathf.Abs(relativePosition.y))
+            {
+                // 左右の判定
+                if (relativePosition.x > 0)
+                {
+                    Debug.Log("左側に接触");
+                    // 右側に接触した場合の処理
+                    RouteString = "1-0";
+                }
+                else if (relativePosition.x < 0)
+                {
+                    Debug.Log("右側に接触");
+                    // 左側に接触した場合の処理
+                    RouteString = "1-2";
+                }
+            }
+            else
+            {
+                // 上下の判定
+                if (relativePosition.y > 0)
+                {
+                    Debug.Log("下側に接触");
+                    // 上側に接触した場合の処理
+                    RouteString = "1-1";
+                }
+                else if (relativePosition.y < 0)
+                {
+                    Debug.Log("上側に接触");
+                    // 下側に接触した場合の処理
+                    RouteString = "1-3";
+                }
+            }
+        }
+        else if (collision.CompareTag("route3"))
+        {
+            // 相対位置に基づいて方向を判定
+            if (Mathf.Abs(relativePosition.x) > Mathf.Abs(relativePosition.y))
+            {
+                // 左右の判定
+                if (relativePosition.x > 0)
+                {
+                    Debug.Log("左側に接触");
+                    // 右側に接触した場合の処理
+                    RouteString = "3-1";
+                }
+                else if (relativePosition.x < 0)
+                {
+                    Debug.Log("右側に接触");
+                    // 左側に接触した場合の処理
+                    RouteString = "3-3";
+                }
+            }
+            else
+            {
+                // 上下の判定
+                if (relativePosition.y > 0)
+                {
+                    Debug.Log("下側に接触");
+                    // 上側に接触した場合の処理
+                    RouteString = "3-0";
+                }
+                else if (relativePosition.y < 0)
+                {
+                    Debug.Log("上側に接触");
+                    // 下側に接触した場合の処理
+                    RouteString = "3-2";
+                }
+            }
+        }
+        else if (collision.CompareTag("route4"))
+        {
+            // 相対位置に基づいて方向を判定
+            if (Mathf.Abs(relativePosition.x) > Mathf.Abs(relativePosition.y))
+            {
+                // 左右の判定
+                if (relativePosition.x < 0)
+                {
+                    Debug.Log("右側に接触");
+                    // 左側に接触した場合の処理
+                    RouteString = "4-0";
+                }
+            }
+            else
+            {
+                // 上下の判定
+                if (relativePosition.y < 0)
+                {
+                    Debug.Log("上側に接触");
+                    // 下側に接触した場合の処理
+                    RouteString = "4-1";
+                }
+            }
+        }
+        else if (collision.CompareTag("route6"))
+        {
+            // 相対位置に基づいて方向を判定
+            if (Mathf.Abs(relativePosition.x) > Mathf.Abs(relativePosition.y))
+            {
+                // 左右の判定
+                if (relativePosition.x > 0)
+                {
+                    Debug.Log("左側に接触");
+                    // 右側に接触した場合の処理
+                    RouteString = "6-1";
+                }
+                else if (relativePosition.x < 0)
+                {
+                    Debug.Log("右側に接触");
+                    // 左側に接触した場合の処理
+                    RouteString = "6-3";
+                }
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        float height = gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
-                // 自身の位置情報を tmp にコピーします。
         Vector3 santaPosition = this.santa.transform.position;
         Vector3 route5Position = this.route5.transform.position;
         Vector3 deathPosition = this.death.transform.position;
         Vector3 route1_1Position = this.route1_1.transform.position;
-        // Debug.Log(santaPosition.x);
-        // Debug.Log(route5Position.x);
-        //  Debug.Log(santaPosition.y-1);
-        //  Debug.Log(deathPosition.y+1.35); 
-        //  Debug.Log(deathPosition.y+1.35); 
-        //  Debug.Log(deathPosition.x);
-        // Debug.Log(route1_1Position.y);
-        float santaWidth = this.santa.GetComponent<Renderer>().bounds.size.x / 2f;
-        float santaHeight = this.santa.GetComponent<Renderer>().bounds.size.y / 2f;
-        float route5Width = this.route5.GetComponent<Renderer>().bounds.size.x / 2f;
-        float route1_1Width = this.route1_1.GetComponent<Renderer>().bounds.size.x / 2f;
-        float deathHeight = this.death.GetComponent<Renderer>().bounds.size.y / 2f;
-    if (
-        // santaPosition.x+0.6 >= route5Position.x-1.35 && santaPosition.x <= route5Position.x  && santaPosition.y == route5Position.y
-        santaPosition.x + santaWidth >= route5Position.x - route5Width && santaPosition.x <= route5Position.x && santaPosition.y == route5Position.y
-        ){
-            RouteString = "5-2";
-
-    }else if (santaPosition.x >= deathPosition.x  && santaPosition.y-santaHeight == deathPosition.y+deathHeight){
-            RouteString = "5-0";
-            Debug.Log("条件が満たされました");
-            }
-    // if (santaPosition.x+0.6 > route5Position.x-1.35 && santaPosition.y == route5Position.y){
-    //         RouteString = "5-0";
-    // }
-    if (RouteString == "5-2"){
-    //     float elapsedTime = Time.time;  // 追加
-    //         float angle = elapsedTime * angularSpeed;
-
-    // // 円弧上の位置を計算
-    // float centerX = route5Position.x;  // route5 の X 座標を中心とします
-    // float centerY = route5Position.y;  // route5 の Y 座標を中心とします
-    // float x = centerX + Mathf.Cos(angle) * radius;
-    // float y = centerY + Mathf.Sin(angle) * radius;
-
-    // // 円弧上の位置に変化させます。
-    // Vector3 santaArcPosition = new Vector3(x, y, 0f);
-
-    // // 自身の位置情報を円弧上の位置に変更します。
-    // this.santa.transform.position = santaArcPosition;
-
-    // // 経過時間を更新
-    // elapsedTime += Time.deltaTime;
-
-    // // 条件が満たされたときの処理
-    // Debug.Log("条件が満たされました");
-
-
-
-
-        // 条件が満たされたときの処理
-        // Debug.Log("条件が満たされました");
-        // tmp の位置情報を、経過時間に応じて下方向に変化させます。
-        santaPosition += Vector3.right * Time.deltaTime;
-         santaPosition += Vector3.down *  Time.deltaTime;
-        // santaPosition += Vector3.down *  Mathf.Pow(1,Time.deltaTime ) * 0.003f;
-        // 自身の位置情報を tmp の位置情報に変更します。
-        this.santa.transform.position = santaPosition;
-    }else if(RouteString == "5-0"){
-santaPosition += Vector3.right;
-santaPosition += Vector3.down;
-    }
-    else if(RouteString == "0")
-    {
-        Debug.Log("条件が満たされませんでした");
-          // tmp の位置情報を、経過時間に応じて下方向に変化させます。
-        santaPosition += Vector3.right * Time.deltaTime;
-        // 自身の位置情報を tmp の位置情報に変更します。
-        this.transform.position = santaPosition;
-    }
-      
+        if (RouteString == "5-2")
+        {
+            santaPosition += Vector3.right * Time.deltaTime;
+            santaPosition += Vector3.down * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "5-0")
+        {
+            santaPosition += Vector3.left * Time.deltaTime;
+            santaPosition += Vector3.up * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "5-3")
+        {
+            santaPosition += Vector3.left * Time.deltaTime;
+            santaPosition += Vector3.up * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "5-1")
+        {
+            santaPosition += Vector3.right * Time.deltaTime;
+            santaPosition += Vector3.down * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "1-0")
+        {
+            santaPosition += Vector3.right * Time.deltaTime;
+            santaPosition += Vector3.up * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "1-2")
+        {
+            santaPosition += Vector3.left * Time.deltaTime;
+            santaPosition += Vector3.down * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "1-1")
+        {
+            santaPosition += Vector3.right * Time.deltaTime;
+            santaPosition += Vector3.up * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "1-3")
+        {
+            santaPosition += Vector3.left * Time.deltaTime;
+            santaPosition += Vector3.down * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "3-1")
+        {
+            santaPosition += Vector3.right * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "3-3")
+        {
+            santaPosition += Vector3.left * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "3-0")
+        {
+            santaPosition += Vector3.up * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "3-2")
+        {
+            santaPosition += Vector3.down * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "4-0")
+        {
+            santaPosition += Vector3.left * Time.deltaTime;
+            santaPosition += Vector3.up * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "4-1")
+        {
+            santaPosition += Vector3.right * Time.deltaTime;
+            santaPosition += Vector3.down * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "6-1")
+        {
+            santaPosition += Vector3.right * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else if (RouteString == "6-3")
+        {
+            santaPosition += Vector3.left * Time.deltaTime;
+            this.santa.transform.position = santaPosition;
+        }
+        else
+        {
+            // tmp の位置情報を、経過時間に応じて下方向に変化させます。
+            santaPosition += Vector3.right * Time.deltaTime;
+            // 自身の位置情報を tmp の位置情報に変更します。
+            this.transform.position = santaPosition;
+        }
     }
 }
