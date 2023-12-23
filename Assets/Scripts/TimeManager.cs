@@ -6,7 +6,7 @@ using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
-    private DateTime StartTime; // DateTime 型で StartTime を保持
+    private static DateTime StartTime; // DateTime 型で StartTime を保持
     public TextMeshProUGUI timeText; // TextMeshProUGUI 型で timeText を保持
 
     // Start is called before the first frame update
@@ -34,7 +34,7 @@ public class TimeManager : MonoBehaviour
     }
 
     // 経過時間を取得するメソッド
-    public int GetElapsedTime()
+    public static int GetElapsedTime()
     {
         // 現在時刻と StartTime の差分を計算
         TimeSpan diff = DateTime.Now - StartTime;
