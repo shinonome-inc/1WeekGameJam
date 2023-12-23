@@ -58,6 +58,12 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# usersettings
+Packages/manifest.json
+Packages/packages-lock.json
+UserSettings/Layouts/default-2022.dwlt
+UserSettings/Search.settings
+
 # files over 100MB
 /Assets/Fonts/NotoSansJP-Medium SDF.asset
 
