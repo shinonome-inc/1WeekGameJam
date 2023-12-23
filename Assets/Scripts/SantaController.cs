@@ -4,7 +4,7 @@ using UnityEngine;
 using Constants;
 
 /// <summary>
-/// 仮のサンタオブジェクトを動かすためのスクリプトです。
+/// サンタオブジェクトを動かすためのController
 /// </summary>
 public class SantaController : MonoBehaviour
 {
