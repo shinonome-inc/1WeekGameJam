@@ -15,9 +15,11 @@ public class SantaController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         // 移動ベクトルを作成
-        Vector2 movement = new Vector2(horizontalInput, verticalInput);
+        Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
         // プレイヤーを移動させる
         transform.Translate(movement * moveSpeed * Time.deltaTime);
+        // z座標を常に-1に保つ
+        transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
     }
 
     // サンタが「わるいこ」と衝突した場合
