@@ -24,6 +24,7 @@ public class ScoreResult : MonoBehaviour
 
     void DisplayScoreResult(int score)
     {
-        scoreResultText.text = $"支給額：{score}円";
+        // scoreResultText.text = $"支給額：{score}円";
+        scoreResultText.text = $"Amount: {score} Yen";
     }
 }

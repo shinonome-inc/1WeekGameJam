@@ -21,7 +21,8 @@ public class ScoreManager : MonoBehaviour
 
     void UpdateScoreText()
     {
-        scoreText.text = $"{score}円";
+        // scoreText.text = $"{score}円";
+        scoreText.text = $"{score} Yen";
     }
 
     public void AddScore(int amount)

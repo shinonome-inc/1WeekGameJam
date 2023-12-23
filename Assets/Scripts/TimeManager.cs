@@ -27,7 +27,8 @@ public class TimeManager : MonoBehaviour
         // 現在時刻と StartTime の差分を計算
         TimeSpan diff = DateTime.Now - StartTime;
         // 差分を文字列 `○分○秒経過` に変換
-        string diffString = $"{diff.Minutes}分{diff.Seconds}秒経過";
+        // string diffString = $"{diff.Minutes}分{diff.Seconds}秒経過";
+        string diffString = $"{diff.Minutes} min {diff.Seconds} sec elapsed";
         // Text コンポーネントを取得して、テキストを更新
         timeText.text = diffString;
     }
