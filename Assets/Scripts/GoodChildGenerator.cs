@@ -6,7 +6,7 @@ public class GoodChildGenerator : MonoBehaviour
 {
     public GameObject goodChildPrefab;
 
-    void GemerateGoodChildPrefab(float x, float y)
+    public void GemerateGoodChildPrefab(float x, float y)
     {
         const float scale = 0.04f;
         GameObject go = Instantiate(goodChildPrefab) as GameObject;
