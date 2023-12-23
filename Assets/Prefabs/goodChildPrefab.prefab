@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 142839449085865032}
   - component: {fileID: 4159268404045328323}
   - component: {fileID: -4773206844569716843}
+  - component: {fileID: -1236066415035218132}
   m_Layer: 0
   m_Name: goodChildPrefab
   m_TagString: GoodChild
@@ -120,3 +121,15 @@ CircleCollider2D:
   m_Offset: {x: -0.1, y: -0.1}
   serializedVersion: 2
   m_Radius: 1.2
+--- !u!114 &-1236066415035218132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113184297716960762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d6acddb0c3433497b6019ef9ee64d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

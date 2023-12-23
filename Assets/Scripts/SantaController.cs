@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Constants;
 
-// 仮のサンタオブジェクトを動かすためのスクリプトです。
-public class Santa : MonoBehaviour
+public class SantaController : MonoBehaviour
 {
     void MoveObjectToMousePosition()
     {
