@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoodChildGenerator : MonoBehaviour
+public class BadChildGenerator : MonoBehaviour
 {
-    public GameObject goodChildPrefab;
+    public GameObject badChildPrefab;
 
-    void GemerateGoodChildPrefab(float x, float y)
+    void GemerateBadChildPrefab(float x, float y)
     {
         const float scale = 0.04f;
-        GameObject go = Instantiate(goodChildPrefab) as GameObject;
+        GameObject go = Instantiate(badChildPrefab) as GameObject;
         go.transform.position = new Vector2(x, y);
         go.transform.localScale = new Vector2(scale, scale);
     }
 
     void Start()
     {
-        GemerateGoodChildPrefab(4.0f, 0.0f);
+        GemerateBadChildPrefab(-4.0f, 0.0f);
     }
 }
