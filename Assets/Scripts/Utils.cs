@@ -12,6 +12,10 @@ namespace Utils
     /// </summary>
     public static class CoordinateUtil
     {
+        /// <summary>
+        /// 画面内のランダムなX座標を生成するメソッド
+        /// </summary>
+        /// <returns></returns>
         public static float RandomPosX()
         {
             const float generatorMinX = -8.0f;
@@ -20,6 +24,10 @@ namespace Utils
             return posX;
         }
 
+        /// <summary>
+        /// 画面内のランダムなY座標を生成するメソッド
+        /// </summary>
+        /// <returns></returns>
         public static float RandomPosY()
         {
             const float generatorMinY = -4.0f;

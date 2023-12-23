@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Constants;
 
-// 仮のサンタオブジェクトを動かすためのスクリプトです。
-public class ProvisionalSanta : MonoBehaviour
+/// <summary>
+/// 仮のサンタオブジェクトを動かすためのスクリプトです。
+/// </summary>
+public class SantaController : MonoBehaviour
 {
     void MoveObjectToMousePosition()
     {
@@ -35,6 +37,7 @@ public class ProvisionalSanta : MonoBehaviour
 
     void Update()
     {
+        // TODO: クリック時ではなく常に一定速度で移動するように修正する。
         if (Input.GetMouseButtonDown(0))
         {
             MoveObjectToMousePosition();
