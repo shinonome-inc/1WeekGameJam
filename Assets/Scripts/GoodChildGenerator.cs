@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class GoodChildGenerator : MonoBehaviour
 {
     public GameObject goodChildPrefab;
 
-    public void GemerateGoodChildPrefab(float x, float y)
+    public void GemerateGoodChild()
     {
+        float x = CoordinateUtil.RandomPosX();
+        float y = CoordinateUtil.RandomPosY();
         const float scale = 0.04f;
         GameObject go = Instantiate(goodChildPrefab) as GameObject;
         go.transform.position = new Vector2(x, y);
@@ -16,6 +19,6 @@ public class GoodChildGenerator : MonoBehaviour
 
     void Start()
     {
-        GemerateGoodChildPrefab(4.0f, 0.0f);
+        GemerateGoodChild();
     }
 }

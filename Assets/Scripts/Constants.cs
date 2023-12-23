@@ -13,12 +13,4 @@ namespace Constants
         public const string goodChildTag = "GoodChild";
         public const string badChildTag = "BadChild";
     }
-
-    /// <summary>
-    /// 座標に関する定数クラス
-    /// </summary>
-    public static class Coordinates
-    {
-        // public const float x = 0;
-    }
 }

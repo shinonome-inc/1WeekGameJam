@@ -29,8 +29,8 @@ public class ProvisionalSanta : MonoBehaviour
         Destroy(badChild);
         GoodChildGenerator goodChildGenerator = GameObject.FindObjectOfType<GoodChildGenerator>();
         BadChildGenerator badChildGenerator = GameObject.FindObjectOfType<BadChildGenerator>();
-        goodChildGenerator.GemerateGoodChildPrefab(3, -3);
-        badChildGenerator.GemerateBadChildPrefab(-3, 3);
+        goodChildGenerator.GemerateGoodChild();
+        badChildGenerator.GemerateBadChild();
     }
 
     void Update()
