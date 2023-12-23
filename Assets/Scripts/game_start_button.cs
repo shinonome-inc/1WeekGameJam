@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameStartButton : MonoBehaviour
+public class game_start_buttom : MonoBehaviour
 {
-    public void ChangeButton()
+    public void change_button()
     {
         SceneManager.LoadScene("2.work");
     }
