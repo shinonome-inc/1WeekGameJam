@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 214966710}
   - component: {fileID: 214966712}
   - component: {fileID: 214966711}
+  - component: {fileID: 214966713}
   m_Layer: 5
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
@@ -274,8 +275,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u652F\u7D66\u984D\uFF1A"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3f12a801409886148bc880a5fff94b1f, type: 2}
-  m_sharedMaterial: {fileID: 6278829486898819705, guid: 3f12a801409886148bc880a5fff94b1f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -349,6 +350,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214966709}
   m_CullTransparentMesh: 1
+--- !u!114 &214966713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214966709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e52641bec44487b9303813dc428810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreResultText: {fileID: 214966711}
 --- !u!1 &402370290
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,8 +526,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u9000\u3000\u52E4\u3000\u6E08"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3f12a801409886148bc880a5fff94b1f, type: 2}
-  m_sharedMaterial: {fileID: 6278829486898819705, guid: 3f12a801409886148bc880a5fff94b1f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
