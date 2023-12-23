@@ -8,10 +8,16 @@ using Constants;
 /// </summary>
 public class SantaController : MonoBehaviour
 {
-    void MoveObjectToMousePosition()
+    private float moveSpeed = 5.0f;
+    void MoveSanta()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = mousePosition;
+        // 上下左右のキー入力を取得
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        // 移動ベクトルを作成
+        Vector2 movement = new Vector2(horizontalInput, verticalInput);
+        // プレイヤーを移動させる
+        transform.Translate(movement * moveSpeed * Time.deltaTime);
     }
 
     // サンタが「わるいこ」と衝突した場合
@@ -37,11 +43,8 @@ public class SantaController : MonoBehaviour
 
     void Update()
     {
-        // TODO: クリック時ではなく常に一定速度で移動するように修正する。
-        if (Input.GetMouseButtonDown(0))
-        {
-            MoveObjectToMousePosition();
-        }
+        // TODO: 十字キー入力時ではなく常に一定速度で移動するように修正する。
+        MoveSanta();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
