@@ -22,11 +22,17 @@ public class SantaController : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
     }
 
+    void OnFinishedGame()
+    {
+        GameDirector gameDirector = GameObject.FindObjectOfType<GameDirector>();
+        gameDirector.OnFinishedGame();
+    }
+
     // サンタが「わるいこ」と衝突した場合
     void OnCollisionBadChild()
     {
         Debug.Log("Santa met " + Tags.badChildTag + ".");
-        // TODO: ゲームオーバーの処理を追加する。
+        OnFinishedGame();
     }
 
     // サンタが「よいこ」と衝突した場合
@@ -59,5 +65,6 @@ public class SantaController : MonoBehaviour
         {
             OnCollisionGoodChild();
         }
+        // TODO: 壁にぶつかった時の処理を追記する。
     }
 }
