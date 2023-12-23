@@ -4,7 +4,7 @@ using UnityEngine;
 using Constants;
 
 // 仮のサンタオブジェクトを動かすためのスクリプトです。
-public class ProvisionalSanta : MonoBehaviour
+public class Santa : MonoBehaviour
 {
     void MoveObjectToMousePosition()
     {
