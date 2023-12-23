@@ -61,3 +61,5 @@ crashlytics-build.properties
 # files over 100MB
 /Assets/Fonts/NotoSansJP-Medium SDF.asset
 
+# TextMeshPro
+/Assets/TextMesh Pro/Examples & Extras
