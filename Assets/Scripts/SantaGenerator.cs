@@ -15,10 +15,11 @@ public class SantaGenerator : MonoBehaviour
     {
         float x = 0;
         float y = 0;
+        float z = -1.0f;
         const float scale = 1.0f;
         GameObject go = Instantiate(santaPrefab) as GameObject;
-        go.transform.position = new Vector2(x, y);
-        go.transform.localScale = new Vector2(scale, scale);
+        go.transform.position = new Vector3(x, y, z);
+        go.transform.localScale = new Vector3(scale, scale, scale);
     }
 
     void Start()
