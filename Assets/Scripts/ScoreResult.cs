@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using unityroom.Api;
 
 
 public class ScoreResult : MonoBehaviour
@@ -18,13 +19,14 @@ public class ScoreResult : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float score = ScoreManager.score;
-        DisplayScoreResult(score);
+        // float score = ScoreManager.score;
+        // DisplayScoreResult(score);
     }
 
     void DisplayScoreResult(float score)
     {
         // scoreResultText.text = $"支給額：{score}円";
         scoreResultText.text = $"Saraly: ¥{string.Format("{0:#,0}", score)}";
+        UnityroomApiClient.Instance.SendScore(1, score, ScoreboardWriteMode.Always);
     }
 }
