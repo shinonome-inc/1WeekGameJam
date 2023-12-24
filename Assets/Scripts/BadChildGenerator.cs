@@ -15,13 +15,29 @@ public class BadChildGenerator : MonoBehaviour
     /// </summary>
     public void GemerateBadChild()
     {
-        float x = CoordinateUtil.RandomPosX();
-        float y = CoordinateUtil.RandomPosY();
+        GameObject santa = GameObject.FindGameObjectWithTag("Santa");
+
+        if (santa != null)
+        {
+            // Santaオブジェクトとの距離が2以上になるように座標生成
+            Vector3 randomPosition;
+            float minDistance = 2.0f;
+            do
+            {
+                float x = CoordinateUtil.RandomPosX();
+                float y = CoordinateUtil.RandomPosY();
                 float z = -1.0f;
-        const float scale = 1.0f;
-        GameObject go = Instantiate(badChildPrefab) as GameObject;
-        go.transform.position = new Vector3(x, y, z);
-        go.transform.localScale = new Vector3(scale, scale, scale);
+                randomPosition = new Vector3(x, y, z);
+            } while (Vector3.Distance(randomPosition, santa.transform.position) < minDistance);
+            // わるいこ生成
+            GameObject badChild = Instantiate(badChildPrefab, randomPosition, Quaternion.identity);
+            const float scale = 1.0f;
+            badChild.transform.localScale = new Vector3(scale, scale, scale);
+        }
+        else
+        {
+            Debug.LogError("Santa object not found.");
+        }
     }
 
     void Start()
