@@ -8,8 +8,8 @@ public class ScoreManager : MonoBehaviour
     public static float score = 0;
     public TextMeshProUGUI scoreText;
 
-    private int baseScorePerSecond = 10; // 1秒間に+10円加算
-    private int scorePerSecond = 10; // 1秒間に+10円加算
+    private int baseScorePerSecond = 1; // 1秒間に+1円加算
+    private int scorePerSecond = 1; // 1秒間に+1円加算
     private int scoreTimes = 1; // 10秒ごとに scorePerSecond を+scoreTimesする
     private int lastTime = 0; // 前回の経過時間
     // private TimeManager timeManager;

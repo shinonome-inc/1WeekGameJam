@@ -41,7 +41,7 @@ public class SantaController : MonoBehaviour
     void OnCollisionGoodChild()
     {
         Debug.Log("Santa met " + Tags.goodChildTag + ".");
-        float presentScore = 1000.0f;
+        float presentScore = 50.0f;
         ScoreManager.AddScore(presentScore);
         GameObject goodChild = GameObject.FindGameObjectWithTag(Tags.goodChildTag);
         GameObject badChild = GameObject.FindGameObjectWithTag(Tags.badChildTag);
