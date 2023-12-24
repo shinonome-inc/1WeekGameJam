@@ -8,6 +8,7 @@ using Constants;
 /// </summary>
 public class SantaController : MonoBehaviour
 {
+    Animator animator;
     public static Vector2 befPos;
     public static Vector2 curPos;
     public static Vector2 nextPos;
@@ -20,7 +21,7 @@ public class SantaController : MonoBehaviour
     //　中心座標へのオフセット
     public static Vector3 offsetCenter = new Vector3(1.35f, 1.35f, 0f);
 
-    public float speed = 1e-9f*10;
+    public float speed = 1e-9f * 10;
     public bool isNext = false;
     public bool isOut = false;
     public int vecInt = 0;
@@ -29,46 +30,6 @@ public class SantaController : MonoBehaviour
     public static int posY = 1; // 今のY
     public static Vector3 swapMove = new Vector3(0.0f, 0.0f, 0.0f);
 
-    // private float moveSpeed = 5.0f;
-    // void MoveSanta()
-    // {
-    //     // 上下左右のキー入力を取得
-    //     Vector2 currntPos = transform.position;
-    //     int posX_, posY_;
-    //     TilePath.GetTileNumber(currntPos, out posX_, out posY_);
-    //     Vector2 normCurPos = TilePath.GetNormalizedPos(currntPos);
-    //     Debug.Log("Santa position: " + currntPos + " Tile position: " + posX_ + " " + posY_ + " Normalized position: " + normCurPos);
-
-    //     float horizontalInput = Input.GetAxis("Horizontal");
-    //     float verticalInput = Input.GetAxis("Vertical");
-    //     // 移動ベクトルを作成
-    //     Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
-    //     // プレイヤーを移動させる
-    //     transform.Translate(movement * moveSpeed * Time.deltaTime);
-    //     // 位置更新の範囲制約
-    //     float clampedX = Mathf.Clamp(transform.position.x, Coordinates.minX, Coordinates.maxX);
-    //     float clampedY = Mathf.Clamp(transform.position.y, Coordinates.minY, Coordinates.maxY);
-    //     transform.position = new Vector3(clampedX, clampedY, -1f);
-    // }
-        // Start is called before the first frame update
-    void Start()
-    {
-        // speed
-        speed = 0.0001f;
-        // worker = GameObject.Find("worker");
-
-        // 現在位置を取得
-        curPos = transform.position; // - offsetCenter;
-        befPos = curPos - new Vector2(0.0f, -0.1f);
-        vecInt = CalcIntNum(befPos, curPos);
-
-        int posX_, posY_;
-        TilePath.GetTileNumber(curPos, out posX_, out posY_);
-        arrayName = tilescript.GetStringArrayElement(posX, posY);
-        // Debug.Log("posX :" + posX + " posY :" + posY + " arrayName :" + arrayName + " CurPos :" + curPos);
-    }
-
-
     // サンタを移動させる
     public void MoveSanta(Vector3 PosDelta)
     {
@@ -76,6 +37,27 @@ public class SantaController : MonoBehaviour
         transform.position += PosDelta;
     }
 
+    void MoveSantaByKeyboard()
+    {
+        float moveSpeed = 5.0f;
+        // 上下左右のキー入力を取得
+        Vector2 currntPos = transform.position;
+        int posX_, posY_;
+        TilePath.GetTileNumber(currntPos, out posX_, out posY_);
+        Vector2 normCurPos = TilePath.GetNormalizedPos(currntPos);
+        Debug.Log("Santa position: " + currntPos + " Tile position: " + posX_ + " " + posY_ + " Normalized position: " + normCurPos);
+
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        // 移動ベクトルを作成
+        Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
+        // プレイヤーを移動させる
+        transform.Translate(movement * moveSpeed * Time.deltaTime);
+        // 位置更新の範囲制約
+        float clampedX = Mathf.Clamp(transform.position.x, Coordinates.minX, Coordinates.maxX);
+        float clampedY = Mathf.Clamp(transform.position.y, Coordinates.minY, Coordinates.maxY);
+        transform.position = new Vector3(clampedX, clampedY, -1f);
+    }
 
     void OnFinishedGame()
     {
@@ -106,97 +88,10 @@ public class SantaController : MonoBehaviour
         badChildGenerator.GemerateBadChild();
     }
 
-    // void Update()
-    // {
-    //     // TODO: 十字キー入力時ではなく常に一定速度で移動するように修正する。
-    //     MoveSanta();
-    // }
-        // Update is called once per frame
-    void Update()
-    {
-        if (swapMove != new Vector3(0.0f, 0.0f, 0.0f))
-        {
-            MoveSanta(swapMove);
-            swapMove = new Vector3(0.0f, 0.0f, 0.0f);
-        }
-
-        curPos = transform.position;// - offsetCenter;
-
-        Vector2 befPosNorm = TilePath.GetNormalizedPos(befPos);
-        Vector2 curPosNorm = TilePath.GetNormalizedPos(curPos);
-        // Debug.Log("befPosNorm :" + befPosNorm + " curPosNorm :" + curPosNorm);
-
-        // SetPathRouteFunction
-        SetPathRouteFunction(arrayName);
-        pathRouteFunction(curPosNorm, befPosNorm, vecInt, speed, out nextPosNorm, out isNext, out isOut);
-        // debug
-        // Debug.Log("nextPosNorm :" + nextPosNorm + " isNext :" + isNext + " isOut :" + isOut);
-
-        if (isOut == true)
-        {
-            // Debug.Log("isOut");
-            OnFinishedGame();
-            return;
-        }
-
-        // Move
-        if (isNext == false)
-        {
-            transform.position += TilePath.GetWorldPos(nextPosNorm);
-        }
-        else
-        {
-            vecInt = CalcIntNum(befPos, curPos);
-
-            // Next Tile
-            // TilePath.GetTileNumber(curPos, out posX, out posY);
-            // Vector2 curPos2 = curPos;
-            switch (vecInt) // ecint →↑←↓の順に1234
-            {
-                case 1:
-                    posX += 1;
-                    transform.position += new Vector3(0.1f, 0.0f, 0.0f);
-                    break;
-                case 2:
-                    posY += 1;
-                    transform.position += new Vector3(0.0f, 0.1f, 0.0f);
-                    break;
-                case 3:
-                    posX -= 1;
-                    transform.position += new Vector3(-0.1f, 0.0f, 0.0f);
-                    break;
-                case 4:
-                    posY -= 1;
-                    transform.position += new Vector3(0.0f, -0.1f, 0.0f);
-                    break;
-                default:
-                    break;
-            }
-            arrayName = tilescript.GetStringArrayElement(posX, posY);
-            // Debug.Log("posX :" + posX + " posY :" + posY + " arrayName :" + arrayName + " CurPos :" + curPos + " vecInt :" + vecInt);
-        }
-        befPos = curPos;
-        //
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag(Tags.badChildTag))
-        {
-            OnCollisionBadChild();
-        }
-        else if (other.gameObject.CompareTag(Tags.goodChildTag))
-        {
-            OnCollisionGoodChild();
-        }
-        // TODO: 壁にぶつかった時の処理を追記する。
-    }
-
     // タイルの名前からパスルート関数を設定する
     private void SetPathRouteFunction(string input)
     {
-        switch(input)
+        switch (input)
         {
             case "R1":
                 pathRouteFunction = TilePath.GetPathRoute1;
@@ -264,5 +159,103 @@ public class SantaController : MonoBehaviour
         }
 
         return intNum;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // speed
+        speed = 0.0001f;
+        // worker = GameObject.Find("worker");
+
+        // 現在位置を取得
+        curPos = transform.position; // - offsetCenter;
+        befPos = curPos - new Vector2(0.0f, -0.1f);
+        vecInt = CalcIntNum(befPos, curPos);
+
+        int posX_, posY_;
+        TilePath.GetTileNumber(curPos, out posX_, out posY_);
+        arrayName = tilescript.GetStringArrayElement(posX, posY);
+        // Debug.Log("posX :" + posX + " posY :" + posY + " arrayName :" + arrayName + " CurPos :" + curPos);
+    }
+
+    void Update()
+    {
+        if (swapMove != new Vector3(0.0f, 0.0f, 0.0f))
+        {
+            MoveSanta(swapMove);
+            swapMove = new Vector3(0.0f, 0.0f, 0.0f);
+        }
+
+        curPos = transform.position;// - offsetCenter;
+
+        Vector2 befPosNorm = TilePath.GetNormalizedPos(befPos);
+        Vector2 curPosNorm = TilePath.GetNormalizedPos(curPos);
+        // Debug.Log("befPosNorm :" + befPosNorm + " curPosNorm :" + curPosNorm);
+
+        // SetPathRouteFunction
+        SetPathRouteFunction(arrayName);
+        pathRouteFunction(curPosNorm, befPosNorm, vecInt, speed, out nextPosNorm, out isNext, out isOut);
+        // debug
+        // Debug.Log("nextPosNorm :" + nextPosNorm + " isNext :" + isNext + " isOut :" + isOut);
+
+        if (isOut == true)
+        {
+            // Debug.Log("isOut");
+            OnFinishedGame();
+            return;
+        }
+
+        // Move
+        if (isNext == false)
+        {
+            transform.position += TilePath.GetWorldPos(nextPosNorm);
+        }
+        else
+        {
+            vecInt = CalcIntNum(befPos, curPos);
+
+            // Next Tile
+            // TilePath.GetTileNumber(curPos, out posX, out posY);
+            // Vector2 curPos2 = curPos;
+            switch (vecInt) // ecint →↑←↓の順に1234
+            {
+                case 1:
+                    posX += 1;
+                    transform.position += new Vector3(0.1f, 0.0f, 0.0f);
+                    break;
+                case 2:
+                    posY += 1;
+                    transform.position += new Vector3(0.0f, 0.1f, 0.0f);
+                    break;
+                case 3:
+                    posX -= 1;
+                    transform.position += new Vector3(-0.1f, 0.0f, 0.0f);
+                    break;
+                case 4:
+                    posY -= 1;
+                    transform.position += new Vector3(0.0f, -0.1f, 0.0f);
+                    break;
+                default:
+                    break;
+            }
+            arrayName = tilescript.GetStringArrayElement(posX, posY);
+            // Debug.Log("posX :" + posX + " posY :" + posY + " arrayName :" + arrayName + " CurPos :" + curPos + " vecInt :" + vecInt);
+        }
+        befPos = curPos;
+        //
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag(Tags.badChildTag))
+        {
+            OnCollisionBadChild();
+        }
+        else if (other.gameObject.CompareTag(Tags.goodChildTag))
+        {
+            OnCollisionGoodChild();
+        }
+        // TODO: 壁にぶつかった時の処理を追記する。
     }
 }
