@@ -28,7 +28,10 @@ public class TimeManager : MonoBehaviour
         TimeSpan diff = DateTime.Now - StartTime;
         // 差分を文字列 `○分○秒経過` に変換
         // string diffString = $"{diff.Minutes}分{diff.Seconds}秒経過";
-        string diffString = $"{diff.Minutes} min {diff.Seconds} sec elapsed";
+        string ampm = diff.Minutes % 24 < 12 ? "AM" : "PM";
+        string timeHour = (diff.Minutes % 24).ToString("D2");
+        string timeMinute = (diff.Seconds % 60).ToString("D2");
+        string diffString = ampm + " " + timeHour + ":" + timeMinute;
         // Text コンポーネントを取得して、テキストを更新
         timeText.text = diffString;
     }
