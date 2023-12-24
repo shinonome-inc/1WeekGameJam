@@ -28,13 +28,13 @@ public class tilescript : MonoBehaviour
 
         // debug
         // log stringArray
-        for (int i = 0; i < stringArray.GetLength(0); i++)
-        {
-            for (int j = 0; j < stringArray.GetLength(1); j++)
-            {
-                Debug.Log(stringArray[i, j] + " " + i + " " + j);
-            }
-        }
+        // for (int i = 0; i < stringArray.GetLength(0); i++)
+        // {
+        //     for (int j = 0; j < stringArray.GetLength(1); j++)
+        //     {
+        //         Debug.Log(stringArray[i, j] + " " + i + " " + j);
+        //     }
+        // }
     }
 
     // Update is called once per frame
@@ -123,7 +123,7 @@ public class tilescript : MonoBehaviour
         {
             string temp = array[row1, col1];
             array[row1, col1] = array[row2, col2];
-            Debug.Log("Converted " + array[row2, col2] + " to " + temp);
+            // Debug.Log("Converted " + array[row2, col2] + " to " + temp);
             array[row2, col2] = temp;
         }
     }
