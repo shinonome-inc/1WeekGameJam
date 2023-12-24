@@ -8,7 +8,8 @@ using Constants;
 /// </summary>
 public class SantaController : MonoBehaviour
 {
-    private float moveSpeed = 5.0f;
+    Animator animator;
+
     void MoveSanta()
     {
         // 上下左右のキー入力を取得
@@ -17,7 +18,9 @@ public class SantaController : MonoBehaviour
         // 移動ベクトルを作成
         Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
         // プレイヤーを移動させる
-        transform.Translate(movement * moveSpeed * Time.deltaTime);
+        float speed = 5.0f;
+        transform.Translate(movement * speed * Time.deltaTime);
+        animator.speed = movement.magnitude;
         // 位置更新の範囲制約
         float clampedX = Mathf.Clamp(transform.position.x, Coordinates.minX, Coordinates.maxX);
         float clampedY = Mathf.Clamp(transform.position.y, Coordinates.minY, Coordinates.maxY);
@@ -51,6 +54,11 @@ public class SantaController : MonoBehaviour
         BadChildGenerator badChildGenerator = GameObject.FindObjectOfType<BadChildGenerator>();
         goodChildGenerator.GemerateGoodChild();
         badChildGenerator.GemerateBadChild();
+    }
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
     }
 
     void Update()
