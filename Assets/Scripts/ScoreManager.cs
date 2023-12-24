@@ -34,7 +34,7 @@ public class ScoreManager : MonoBehaviour
     void UpdateScoreText()
     {
         // scoreText.text = $"{score}円";
-        scoreText.text = $"{score} Yen";
+        scoreText.text = $"¥{string.Format("{0:#,0}", score)}";
     }
 
     float CalculateScore(int elapsedTime, int lastTime)
