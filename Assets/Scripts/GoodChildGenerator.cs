@@ -18,7 +18,7 @@ public class GoodChildGenerator : MonoBehaviour
         float x = CoordinateUtil.RandomPosX();
         float y = CoordinateUtil.RandomPosY();
         float z = -1.0f;
-        const float scale = 1.0f;
+        const float scale = 0.7f;
         GameObject go = Instantiate(goodChildPrefab) as GameObject;
         go.transform.position = new Vector3(x, y, z);
         go.transform.localScale = new Vector3(scale, scale, scale);
