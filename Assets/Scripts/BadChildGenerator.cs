@@ -21,7 +21,7 @@ public class BadChildGenerator : MonoBehaviour
         {
             // Santaオブジェクトとの距離が2以上になるように座標生成
             Vector3 randomPosition;
-            float minDistance = 2.0f;
+            float minDistance = 5.0f;
             do
             {
                 float x = CoordinateUtil.RandomPosX();
