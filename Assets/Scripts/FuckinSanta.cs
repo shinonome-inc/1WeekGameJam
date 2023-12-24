@@ -32,7 +32,7 @@ public class FuckinSanta : MonoBehaviour
     void Start()
     {
         // speed
-        speed = 0.0001f;
+        speed = 0.000001f;
         worker = GameObject.Find("worker");
 
         // 現在位置を取得
@@ -195,39 +195,4 @@ public class FuckinSanta : MonoBehaviour
         return intNum;
     }
 
-    // サンタが「よいこ」と衝突した場合
-    void OnCollisionGoodChild()
-    {
-        Debug.Log("Santa met " + Tags.goodChildTag + ".");
-        float presentScore = 50.0f;
-        ScoreManager.AddScore(presentScore);
-        GameObject goodChild = GameObject.FindGameObjectWithTag(Tags.goodChildTag);
-        GameObject badChild = GameObject.FindGameObjectWithTag(Tags.badChildTag);
-        Destroy(goodChild);
-        Destroy(badChild);
-        GoodChildGenerator goodChildGenerator = GameObject.FindObjectOfType<GoodChildGenerator>();
-        BadChildGenerator badChildGenerator = GameObject.FindObjectOfType<BadChildGenerator>();
-        goodChildGenerator.GemerateGoodChild();
-        badChildGenerator.GemerateBadChild();
-    }
-
-    // サンタが「わるいこ」と衝突した場合
-    void OnCollisionBadChild()
-    {
-        Debug.Log("Santa met " + Tags.badChildTag + ".");
-        OnFinishedGame();
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag(Tags.badChildTag))
-        {
-            OnCollisionBadChild();
-        }
-        else if (other.gameObject.CompareTag(Tags.goodChildTag))
-        {
-            OnCollisionGoodChild();
-        }
-        // TODO: 壁にぶつかった時の処理を追記する。
-    }
 }

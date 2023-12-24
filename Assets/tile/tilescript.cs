@@ -44,22 +44,28 @@ public class tilescript : MonoBehaviour
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+
             if (hit)
             {
-                if (Vector2.Distance(emptySpace.position, hit.transform.position) < 3)
+                // "Tile" タグを持つオブジェクトとのみ当たり判定を行う
+                if (hit.transform.CompareTag("Tile"))
                 {
-                    SwapTiles(emptySpace, hit.transform);
+                    if (Vector2.Distance(emptySpace.position, hit.transform.position) < 3)
+                    {
+                        SwapTiles(emptySpace, hit.transform);
 
-                    // Stringの3x5の二次元配列をSwapする例
-                    // int row1 = 1;
-                    // int col1 = 2;
-                    // int row2 = 2;
-                    // int col2 = 3;
-                    // SwapStringArrayElements(stringArray, row1, col1, row2, col2);
+                        // Stringの3x5の二次元配列をSwapする例
+                        // int row1 = 1;
+                        // int col1 = 2;
+                        // int row2 = 2;
+                        // int col2 = 3;
+                        // SwapStringArrayElements(stringArray, row1, col1, row2, col2);
+                    }
                 }
             }
         }
     }
+
 
     // タイルの位置を取得する静的な関数
     public static Transform[] GetTilePositions()
@@ -85,10 +91,20 @@ public class tilescript : MonoBehaviour
         TilePath.GetTileNumber(new Vector2(posX2, posY2), out col2, out row2);
 
         bool isMoveSanta = CheckMoveSanta(col1, row1);
-        Debug.Log("IsMoveSanta: " + isMoveSanta);
+        bool isMoveGood = CheckMoveGood(col1, row1);
+        bool isMoveBad = CheckMoveBad(col1, row1);
+        Debug.Log("IsMoveSanta: " + isMoveSanta + " IsMoveGood: " + isMoveGood + " IsMoveBad: " + isMoveBad);
         if (isMoveSanta)
         {
             SantaPositionMove(col1, row1, col2, row2);
+        }
+        if (isMoveGood)
+        {
+            GoodPositionMove(col1, row1, col2, row2);
+        }
+        if (isMoveBad)
+        {
+            BadPositionMove(col1, row1, col2, row2);
         }
 
         // タイルの位置が変更された後、対応するstringArrayの要素も交換する
@@ -133,10 +149,10 @@ public class tilescript : MonoBehaviour
     public bool CheckMoveSanta(int nextCol, int nextRow)
     {
         // 現在位置のインデックスを取得
-        int curCol = FuckinSanta.posX;
-        int curRow = FuckinSanta.posY;
+        int curCol = SantaController.posX;
+        int curRow = SantaController.posY;
 
-        Debug.Log("Santa (Col, Row)" + curCol + " " + curRow + "  NextCol" + nextCol + " " + nextRow);
+        // Debug.Log("Santa (Col, Row)" + curCol + " " + curRow + "  NextCol" + nextCol + " " + nextRow);
 
         int diffCol = Mathf.Abs(curCol - nextCol);
         int diffRow = Mathf.Abs(curRow - nextRow);
@@ -157,15 +173,81 @@ public class tilescript : MonoBehaviour
         int diffCol = - nextCol + curCol; // Y
         int diffRow = - nextRow + curRow; // X
 
-        FuckinSanta.posX += diffCol;
-        FuckinSanta.posY += diffRow;
+        SantaController.posX += diffCol;
+        SantaController.posY += diffRow;
 
         Vector3 diffMove = new Vector3(diffCol*2.7f, diffRow*2.7f, 0.0f);
 
         //FuckinSanta.curPos -= diffMove;
-        FuckinSanta.MoveSanta(diffMove);
+        // SantaController santaController = GetComponent<SantaController>(); // サンタのコントローラーを取得
+        // santaController. += diffMove;
+        SantaController.swapMove += diffMove;
 
         Debug.Log("Diff X, Y" + diffCol + " " + diffRow + " Diff move" + diffMove);
     }
 
+    // 良い子を移動させるか判断する関数
+    public bool CheckMoveGood(int nextCol, int nextRow)
+    {
+        Vector2 curGoodPos = GoodChildController.curPos;
+        int curCol, curRow;
+        TilePath.GetTileNumber(curGoodPos, out curCol, out curRow);
+
+        int diffCol = Mathf.Abs(curCol - nextCol);
+        int diffRow = Mathf.Abs(curRow - nextRow);
+        // 判断
+        if (diffCol + diffRow == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    // 良い子を移動させる関数
+    public void GoodPositionMove(int nextCol, int nextRow, int curCol, int curRow)
+    {
+        int diffCol = - nextCol + curCol; // Y
+        int diffRow = - nextRow + curRow; // X
+
+        Vector3 diffMove = new Vector3(diffCol*2.7f, diffRow*2.7f, 0.0f);
+        GoodChildController.swapMove += diffMove;
+
+        Debug.Log("Diff X, Y" + diffCol + " " + diffRow + " Diff move" + diffMove);
+    }
+
+
+    // 悪い子を移動させるか判断する関数
+    public bool CheckMoveBad(int nextCol, int nextRow)
+    {
+        Vector2 curGoodPos = BadChildController.curPos;
+        int curCol, curRow;
+        TilePath.GetTileNumber(curGoodPos, out curCol, out curRow);
+
+        int diffCol = Mathf.Abs(curCol - nextCol);
+        int diffRow = Mathf.Abs(curRow - nextRow);
+        // 判断
+        if (diffCol + diffRow == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    // 悪い子を移動させる関数
+    public void BadPositionMove(int nextCol, int nextRow, int curCol, int curRow)
+    {
+        int diffCol = - nextCol + curCol; // Y
+        int diffRow = - nextRow + curRow; // X
+
+        Vector3 diffMove = new Vector3(diffCol*2.7f, diffRow*2.7f, 0.0f);
+        BadChildController.swapMove += diffMove;
+
+        Debug.Log("Diff X, Y" + diffCol + " " + diffRow + " Diff move" + diffMove);
+    }
 }
