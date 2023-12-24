@@ -2423,6 +2423,7 @@ GameObject:
   - component: {fileID: 1590646046}
   - component: {fileID: 1590646045}
   - component: {fileID: 1590646044}
+  - component: {fileID: 1590646048}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2514,6 +2515,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1590646048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590646043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0768a31a42716474891d1f95f77a59db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convertPos: {x: 0, y: 0}
 --- !u!1 &1684375534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,6 +2706,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1843813259}
   - component: {fileID: 1843813258}
+  - component: {fileID: 1843813260}
   m_Layer: 0
   m_Name: worker
   m_TagString: Untagged
@@ -2740,8 +2755,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.18280526, g: 0.49056602, b: 0.24757943, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3dffe62c5fb604b42891f83319e3e7f0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2760,12 +2775,29 @@ Transform:
   m_GameObject: {fileID: 1843813257}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 2.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -5.28, y: 2.75, z: -0.5}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1843813260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843813257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408e326bf1afe4659ba80a6342424ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.00000001
+  isNext: 0
+  isOut: 0
+  vecInt: 0
+  arrayName: 
 --- !u!1 &2061833025
 GameObject:
   m_ObjectHideFlags: 0
