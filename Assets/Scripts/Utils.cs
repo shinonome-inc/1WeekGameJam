@@ -18,9 +18,7 @@ namespace Utils
         /// <returns></returns>
         public static float RandomPosX()
         {
-            const float generatorMinX = -8.0f;
-            const float generatorMaxX = 8.0f;
-            float posX = Random.Range(generatorMinX, generatorMaxX);
+            float posX = Random.Range(Coordinates.minX, Coordinates.maxX);
             return posX;
         }
 
@@ -30,9 +28,7 @@ namespace Utils
         /// <returns></returns>
         public static float RandomPosY()
         {
-            const float generatorMinY = -4.0f;
-            const float generatorMaxY = 4.0f;
-            float posY = Random.Range(generatorMinY, generatorMaxY);
+            float posY = Random.Range(Coordinates.minY, Coordinates.maxY);
             return posY;
         }
     }

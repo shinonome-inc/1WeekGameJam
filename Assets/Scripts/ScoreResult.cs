@@ -25,6 +25,6 @@ public class ScoreResult : MonoBehaviour
     void DisplayScoreResult(float score)
     {
         // scoreResultText.text = $"支給額：{score}円";
-        scoreResultText.text = $"Amount: {score} Yen";
+        scoreResultText.text = $"Saraly: ¥{string.Format("{0:#,0}", score)}";
     }
 }

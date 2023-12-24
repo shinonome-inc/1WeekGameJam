@@ -18,8 +18,10 @@ public class SantaController : MonoBehaviour
         Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
         // プレイヤーを移動させる
         transform.Translate(movement * moveSpeed * Time.deltaTime);
-        // z座標を常に-1に保つ
-        transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
+        // 位置更新の範囲制約
+        float clampedX = Mathf.Clamp(transform.position.x, Coordinates.minX, Coordinates.maxX);
+        float clampedY = Mathf.Clamp(transform.position.y, Coordinates.minY, Coordinates.maxY);
+        transform.position = new Vector3(clampedX, clampedY, -1f);
     }
 
     void OnFinishedGame()
@@ -39,6 +41,8 @@ public class SantaController : MonoBehaviour
     void OnCollisionGoodChild()
     {
         Debug.Log("Santa met " + Tags.goodChildTag + ".");
+        float presentScore = 50.0f;
+        ScoreManager.AddScore(presentScore);
         GameObject goodChild = GameObject.FindGameObjectWithTag(Tags.goodChildTag);
         GameObject badChild = GameObject.FindGameObjectWithTag(Tags.badChildTag);
         Destroy(goodChild);
