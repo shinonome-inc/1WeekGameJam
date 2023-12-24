@@ -22,7 +22,7 @@ public class SantaGenerator : MonoBehaviour
         go.transform.localScale = new Vector3(scale, scale, scale);
     }
 
-    void Start()
+    void Awake()
     {
         GemerateSanta();
     }
