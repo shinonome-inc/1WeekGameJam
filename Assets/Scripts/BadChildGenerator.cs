@@ -31,7 +31,7 @@ public class BadChildGenerator : MonoBehaviour
             } while (Vector3.Distance(randomPosition, santa.transform.position) < minDistance);
             // わるいこ生成
             GameObject badChild = Instantiate(badChildPrefab, randomPosition, Quaternion.identity);
-            const float scale = 0.7f;
+            const float scale = 1.0f;
             badChild.transform.localScale = new Vector3(scale, scale, scale);
         }
         else

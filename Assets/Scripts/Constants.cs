@@ -20,9 +20,9 @@ namespace Constants
     /// </summary>
     public static class Coordinates
     {
-        public const float minX = -7.0f;
-        public const float maxX = 7.0f;
-        public const float minY = -3.5f;
-        public const float maxY = 3.5f;
+        public const float minX = -8.0f;
+        public const float maxX = 8.0f;
+        public const float minY = -4.0f;
+        public const float maxY = 4.0f;
     }
 }

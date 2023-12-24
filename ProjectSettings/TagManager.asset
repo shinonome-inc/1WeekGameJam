@@ -7,7 +7,6 @@ TagManager:
   - Santa
   - GoodChild
   - BadChild
-  - Tile
   layers:
   - Default
   - TransparentFX
