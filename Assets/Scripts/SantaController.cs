@@ -69,6 +69,7 @@ public class SantaController : MonoBehaviour
     void OnCollisionBadChild()
     {
         Debug.Log("Santa met " + Tags.badChildTag + ".");
+        BadChildController.PlaySE();
         OnFinishedGame();
     }
 
