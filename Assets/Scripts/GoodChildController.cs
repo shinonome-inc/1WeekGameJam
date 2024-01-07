@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class GoodChildController : MonoBehaviour
 {
+    public static AudioSource audioSource;
+    [SerializeField]
+    public static AudioClip se;
     public static Vector2 curPos;
     public static Vector3 swapMove = new Vector3(0.0f, 0.0f, 0.0f);
     // アニメーションのパラメータ
@@ -16,6 +19,15 @@ public class GoodChildController : MonoBehaviour
 
     // アニメーションの方向を管理するフラグ
     private bool isGrowing = true;
+
+    /// <summary>
+    /// SEを鳴らすメソッド
+    /// </summary>
+    public static void PlaySE()
+    {
+        audioSource.PlayOneShot(se);
+    }
+
 
     void Animate()
     {

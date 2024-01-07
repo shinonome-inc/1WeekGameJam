@@ -6,6 +6,7 @@ using System.Linq;
 
 public class TilePath : MonoBehaviour
 {
+    public static AudioSource audioSource;
     // 左下、右上の座標を入力
     // public static Vector2 leftDownPos = new Vector2(-5.38f, -3.40f);
     // public static Vector2 rightUpPos = new Vector2(5.42f, 2.20f);
@@ -30,6 +31,15 @@ public class TilePath : MonoBehaviour
     GameObject route5_3;
     GameObject route5_4;
     GameObject route5_5;
+
+    /// <summary>
+    /// SEを鳴らすメソッド
+    /// </summary>
+    public static void PlaySE()
+    {
+        audioSource.Play();
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -85,7 +95,9 @@ public class TilePath : MonoBehaviour
             x = 0;
             y = 0;
             return false;
-        }else{
+        }
+        else
+        {
             // 現在の座標番号を計算 5*3のマス目の中で何番目にいるか
             x = (int)((vec.x - leftDownPos.x) / singleTileWidth);
             y = (int)((vec.y - leftDownPos.y) / singleTileHeight);
@@ -130,15 +142,15 @@ public class TilePath : MonoBehaviour
 
     // route0のパスについて
     public static void GetPathRoute0(Vector2 Pos, Vector2 BefPos, int inputNum, float speed, out Vector2 moveMent, out bool isNext, out bool isOut)
-   {
+    {
         isOut = true;
         isNext = false;
         moveMent = new Vector2(0, 0);
-   }
+    }
 
     // route1のパスについて
     public static void GetPathRoute1(Vector2 Pos, Vector2 BefPos, int inputNum, float speed, out Vector2 moveMent, out bool isNext, out bool isOut)
-   {
+    {
         // vecint →↑←↓の順に1234
         // 道1: 出入り口(0, 0.5), 出入り口(0.5, 1)
         // 道2: 出入り口(0.5, 0.0), 出入り口(1, 0.5)
@@ -150,7 +162,7 @@ public class TilePath : MonoBehaviour
         Vector2 goal = new Vector2(0, 0);
 
         // Switch文で場合分け
-        switch(inputNum)
+        switch (inputNum)
         {
             case 1: // 出口は(0.5, 1);
                 goal = new Vector2(0.5f, 1.01f);
@@ -281,7 +293,7 @@ public class TilePath : MonoBehaviour
 
     // route4のパスについて
     public static void GetPathRoute4(Vector2 Pos, Vector2 BefPos, int inputNum, float speed, out Vector2 moveMent, out bool isNext, out bool isOut)
-   {
+    {
         // vecint →↑←↓の順に1234
         // 道2: 出入り口(0.5, 1.0), 出入り口(1, 0.5)
 
@@ -294,16 +306,16 @@ public class TilePath : MonoBehaviour
         moveMent = new Vector2(0, 0);
 
         // Switch文で場合分け
-        switch(inputNum)
+        switch (inputNum)
         {
             case 1: // 出口は(0.5, 0);
                 isOut = true;
                 return;
-                // break;
+            // break;
             case 2: // 出口は(0, 0.5);
                 isOut = true;
                 return;
-                // break;
+            // break;
             case 3: // 出口は(0.5, 1);
                 goal = new Vector2(0.5f, 1.01f);
                 break;
@@ -349,7 +361,7 @@ public class TilePath : MonoBehaviour
 
 
         // Switch文で場合分け
-        switch(inputNum)
+        switch (inputNum)
         {
             case 1: // 出口は(0.5, 0);
                 goal = new Vector2(0.5f, -0.01f);
@@ -402,11 +414,11 @@ public class TilePath : MonoBehaviour
             case 2:
                 isOut = true;
                 return;
-                // break;
+            // break;
             case 3: // 出口は(0, 0.5);
                 goal = new Vector2(-0.01f, 0.5f);
                 return;
-                // break;
+            // break;
             case 4:
                 isOut = true;
                 break;

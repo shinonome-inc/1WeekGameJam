@@ -8,8 +8,17 @@ using Constants;
 /// </summary>
 public class BadChildController : MonoBehaviour
 {
+     static AudioSource audioSource;
     public static Vector2 curPos;
     public static Vector3 swapMove = new Vector3(0.0f, 0.0f, 0.0f);
+
+    /// <summary>
+    /// SEを鳴らすメソッド
+    /// </summary>
+    public static void PlaySE()
+    {
+        audioSource.Play();
+    }
 
     void MoveRandomly()
     {
@@ -25,6 +34,11 @@ public class BadChildController : MonoBehaviour
 
         // わるいこを新しい位置に移動
         transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
+    }
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
