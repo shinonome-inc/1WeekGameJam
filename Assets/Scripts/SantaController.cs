@@ -21,7 +21,7 @@ public class SantaController : MonoBehaviour
     //　中心座標へのオフセット
     public static Vector3 offsetCenter = new Vector3(1.35f, 1.35f, 0f);
 
-    public float speed = 1e-9f * 10;
+    public float speed;
     public bool isNext = false;
     public bool isOut = false;
     public int vecInt = 0;
@@ -166,7 +166,7 @@ public class SantaController : MonoBehaviour
     void Start()
     {
         // speed
-        speed = 0.0001f;
+        speed = 0.00004f;
         // worker = GameObject.Find("worker");
 
         // 現在位置を取得
